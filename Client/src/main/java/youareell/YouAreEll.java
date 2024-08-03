@@ -30,18 +30,33 @@ public class YouAreEll {
         return sb.toString();
     }
 
-    public String get_messages() {
-        List<models.Message> latestMessages = tt.getMessages();
-        StringBuilder sb = new StringBuilder();
-        for (models.Message msg : latestMessages) {
-            sb.append(msg.toString()+"\n");
+    public String get_messages(String githubId) {
+        if (githubId == null) {
+            List<models.Message> latestMessages = tt.getMessages();
+            StringBuilder sb = new StringBuilder();
+            for (models.Message msg : latestMessages) {
+                sb.append(msg.toString() + "\n");
+            }
+            return sb.toString();
         }
-        return sb.toString();
+
+        Id currentPerson = checkExistingGithubId(githubId);
+        if (currentPerson !=null){
+            List<models.Message> updatedMessages = tt.getMessagesForId(currentPerson);
+            StringBuilder sb = new StringBuilder();
+            for (models.Message msg : updatedMessages) {
+                sb.append(msg.toString() + "\n");
+            }
+            return sb.toString();
+        } else {
+            return null;
+        }
     }
 
-    public String postOrPutId(String name, String id) {
 
-        Id checkedId = checkExistingId(id);
+    public String postOrPutId(String name, String githubId) {
+
+        Id checkedId = checkExistingGithubId(githubId);
 
         if (checkedId != null){
 
@@ -52,7 +67,7 @@ public class YouAreEll {
             return "Name is same on the server for this github id.";
         } else {
             //else if id doesnt exist, create new entry === post
-            Id newId = new Id(name, id);
+            Id newId = new Id(name, githubId);
             return postId(newId);
         }
 
@@ -67,7 +82,7 @@ public class YouAreEll {
         //else if id doesnt exist, create new entry === post
     }
 
-    public Id checkExistingId(String checkID){
+    public Id checkExistingGithubId(String checkID){
         List<models.Id> allIds = tt.getIds();
         for (Id element : allIds){
             if (element.getGithub().equals(checkID)){

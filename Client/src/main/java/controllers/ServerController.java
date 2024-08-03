@@ -78,6 +78,10 @@ public class ServerController {
     public String getMessages() {
         return sendRequest("/messages", "GET", "");
     }
+
+    public String getUserMessages(Id id){
+        return sendRequest("/ids/"+id.getGithub()+"/messages", "GET", "");
+    }
     
     public String getIds() {
         return sendRequest("/ids", "GET", "");

@@ -14,11 +14,17 @@ import controllers.TransactionController;
 
 // URLShell is a Console view for youareell.YouAreEll.
 public class URLShell {
+
+    private List<String> commandInput;
+
+    public List<String> getCommandInput() {
+        return commandInput;
+    }
+
     public static void prettyPrint(String output) {
         // yep, make an effort to format things nicely, eh?
         System.out.println(output);
     }
-
 
     public static void main(String[] args) throws java.io.IOException {
         new URLShell().run();
@@ -44,6 +50,7 @@ public class URLShell {
             //input parsed into array of strings(command and arguments)
             String[] commands = commandLine.split(" ");
             List<String> list = new ArrayList<String>();
+            commandInput = list;
 
             //if the user entered a return, just loop again
             if (commandLine.equals(""))
@@ -84,9 +91,15 @@ public class URLShell {
                     continue;
                 }
 
+                if (list.get(0).equals("messages") && list.size() == 2){
+                    String results = urll.get_messages(list.get(1));
+                    URLShell.prettyPrint(results);
+                    continue;
+                }
+
                 // messages
                 if (list.get(0).equals("messages")) {
-                    String results = urll.get_messages();
+                    String results = urll.get_messages(null);
                     URLShell.prettyPrint(results);
                     continue;
                 }

@@ -37,6 +37,10 @@ public class TransactionController {
     }
 
     public List<Message> getMessages() {
-        return msgCtrl.getMessages();
+        return msgCtrl.getMessages(null);
+    }
+
+    public List<Message> getMessagesForId(Id id){
+        return msgCtrl.getMessages(id);
     }
 }
