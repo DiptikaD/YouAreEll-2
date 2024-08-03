@@ -44,7 +44,9 @@ public class URLShell {
         //we break out with <ctrl c>
         while (true) {
             //read what the user enters
-            System.out.println("cmd? ");
+            System.out.println("\u001B[35mWelcome to YouAreEll \n" +
+                    "If you need help, then type Help \n" +
+                    "\nType in your commands: \u001B[0m ");
             commandLine = console.readLine();
 
             //input parsed into array of strings(command and arguments)
@@ -56,7 +58,7 @@ public class URLShell {
             if (commandLine.equals(""))
                 continue;
             if (commandLine.equals("exit")) {
-                System.out.println("\n*** Bye!\n");
+                System.out.println("\n\u001B[33mBye!\n");
                 break;
             }
 
@@ -79,6 +81,31 @@ public class URLShell {
                 // Specific Commands.
 
                 // ids
+
+                if (list.get(0).equals("help") || list.get(0).equals("Help")){
+                    String s = "\u001B[32mID help: \u001B[0m\n" +
+                            "Register an ID:\n" +
+                            "ids your_name your_github_handle \n" +
+                            "\n" +
+                            "List of all IDs: \n" +
+                            "ids\n" +
+                            "\n" +
+                            "Update existing ID: \n" +
+                            "ids your_updated_name your_github_handle \n" +
+                            "\n" +
+                            "\u001B[32mMessaging help:\u001B[0m\n" +
+                            "Send a message: \n" +
+                            "messages your_github_handle their_github_handle type your message\n" +
+                            "\n" +
+                            "See messages directed at user:\n" +
+                            "messages your_github_handle\n" +
+                            "\n" +
+                            "See global messages\n" +
+                            "messages\n";
+                    URLShell.prettyPrint(s);
+                    continue;
+                }
+
                 if (list.get(0).equals("ids") && list.size() == 3) {
                     String results = urll.postOrPutId(list.get(1), list.get(2));
                     URLShell.prettyPrint(results);
