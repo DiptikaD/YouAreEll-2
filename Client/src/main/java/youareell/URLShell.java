@@ -97,6 +97,17 @@ public class URLShell {
                     continue;
                 }
 
+                if (list.get(0).equals("messages") && (list.size() > 3)){
+                    StringBuilder sb = new StringBuilder();
+                    for (int i =3; i< list.size(); i++){
+                        sb.append(list.get(i) + " ");
+                    }
+
+                    String results = urll.postMessage(list.get(1), list.get(2), sb.toString());
+                    URLShell.prettyPrint(results);
+                    continue;
+                }
+
                 // messages
                 if (list.get(0).equals("messages")) {
                     String results = urll.get_messages(null);

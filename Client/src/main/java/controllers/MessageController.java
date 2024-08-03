@@ -65,8 +65,9 @@ public class MessageController {
         return null;
     }
 
-    public Message postMessage(Id myId, Id toId, Message msg) {
-        return null;
+    public String postMessage(Message msg) {
+        return sc.postUserMessage(msg);
+
     }
  
 }

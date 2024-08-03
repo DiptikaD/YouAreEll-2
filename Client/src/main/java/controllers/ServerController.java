@@ -1,6 +1,7 @@
 package controllers;
 
 import models.Id;
+import models.Message;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -81,6 +82,11 @@ public class ServerController {
 
     public String getUserMessages(Id id){
         return sendRequest("/ids/"+id.getGithub()+"/messages", "GET", "");
+    }
+
+    public String postUserMessage(Message message){
+        return sendRequest("/ids/"+message.getFromid()+"/messages", "POST", message.sendMessageJsonToString());
+
     }
     
     public String getIds() {

@@ -4,6 +4,7 @@ import java.util.List;
 
 import controllers.*;
 import models.Id;
+import models.Message;
 
 public class YouAreEll {
     private TransactionController tt;
@@ -51,6 +52,19 @@ public class YouAreEll {
         } else {
             return null;
         }
+    }
+
+    public String postMessage(String fromGithubId, String toGithubId, String message){
+        Id checkedToId = checkExistingGithubId(toGithubId);
+        Id checkedFromId = checkExistingGithubId(fromGithubId);
+        if (checkedFromId !=null && checkedToId==null){
+            Message postMessageToAll = new Message(message, fromGithubId, "");
+            return tt.postMessage(postMessageToAll);
+        } else if (checkedFromId !=null && checkedToId!=null){
+            Message postMessage = new Message(message, fromGithubId, toGithubId);
+            return tt.postMessage(postMessage);
+        }
+        return "message not posted";
     }
 
 

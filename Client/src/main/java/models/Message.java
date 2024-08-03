@@ -50,6 +50,13 @@ public class Message implements Comparable<Message> {
         return "to: " + this.toid + "\nfrom: "+ this.fromid + "\n" + this.message + "\n----\n";
     }
 
+    public String sendMessageJsonToString(){
+        String s = "{\"fromid\": \"" + this.fromid + "\",\n" +
+                "\"toid\" : \"" + toid +"\" ,\n"+
+                "\"message\" :\""+ message +"\" }";
+        return s;
+    }
+
     @Override
     public int compareTo(Message o) {
         return this.sequence.compareTo(((Message) o).getSequence());
