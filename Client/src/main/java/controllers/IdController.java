@@ -21,6 +21,11 @@ public class IdController {
         allIds = new HashMap<String, Id>();
     }
 
+    public String putId(Id id) {
+
+        return sc.putId(id);
+    }
+
     public ArrayList<Id> getIds() {
         String jsonInput = sc.getIds();
         // convert json to array of Ids
@@ -40,16 +45,14 @@ public class IdController {
         return null;
     }
 
-    public Id postId(Id id) {
+    public String postId(Id id) {
+        return sc.postId(id);
         // create json from id
         // call server, get json result Or error
         // result json to Id obj
 
-        return null;
     }
 
-    public Id putId(Id id) {
-        return null;
-    }
+
  
 }

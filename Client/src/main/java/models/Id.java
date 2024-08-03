@@ -16,6 +16,11 @@ public class Id {
         this.github = github;
     }
 
+    public Id(String name, String githubId) {
+        this.name = name;
+        this.github = githubId;
+    }
+
     public String getUserid() {
         return userid;
     }
@@ -44,4 +49,12 @@ public class Id {
     public String toString() {
         return this.name + " (" + this.github + ") ";
     }
+
+    public String IdToString(){
+        String s = "{\"userid\" : \"" + this.userid + "\" ," + "\"name\" : \"" + this.name + "\" ," +
+                "\"github\" : \"" + this.github + "\" }";
+        return s;
+    }
+
+
 }

@@ -22,19 +22,18 @@ public class TransactionController {
     public String getId(String id) {
         return null;
     }
-    public String putId(String id) {
-        return null;
+    public String putId(Id id) {
+        return idCtrl.putId(id).toString();
     }
 
     public String deleteId(String id) {
         return null;
     }
 
-    public String postId(String idtoRegister, String githubName) {
-        // Id tid = new Id(idtoRegister, githubName);
-        // tid = idCtrl.postId(tid);
-        // return ("Id registered.");
-        return null;
+    public String postId(String name, String githubName) {
+         Id tid = new Id(name, githubName);
+        System.out.println("Id registered");
+         return idCtrl.postId(tid);
     }
 
     public List<Message> getMessages() {

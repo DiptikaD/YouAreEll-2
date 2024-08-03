@@ -72,14 +72,20 @@ public class URLShell {
                 // Specific Commands.
 
                 // ids
-                if (list.get(0).contains("ids")) {
+                if (list.get(0).equals("ids") && list.size() == 3) {
+                    String results = urll.postOrPutId(list.get(1), list.get(2));
+                    URLShell.prettyPrint(results);
+                    continue;
+                }
+
+                if (list.get(0).equals("ids")) {
                     String results = urll.get_ids();
                     URLShell.prettyPrint(results);
                     continue;
                 }
 
                 // messages
-                if (list.get(0).contains("messages")) {
+                if (list.get(0).equals("messages")) {
                     String results = urll.get_messages();
                     URLShell.prettyPrint(results);
                     continue;

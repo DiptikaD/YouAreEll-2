@@ -1,5 +1,7 @@
 package controllers;
 
+import models.Id;
+
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -41,7 +43,7 @@ public class ServerController {
             con.setRequestProperty("User-Agent", "Mozilla/5.0");
             
 
-            if (method.equals("POST")) {
+            if (method.equals("POST") || method.equals("PUT")) {
                 // Send POST request using the body parameter
                 con.setDoOutput(true);
                 DataOutputStream wr = new DataOutputStream(con.getOutputStream());
@@ -79,6 +81,14 @@ public class ServerController {
     
     public String getIds() {
         return sendRequest("/ids", "GET", "");
+    }
+
+    public String putId(Id id) {
+        return sendRequest("/ids", "PUT", id.IdToString());
+    }
+
+    public String postId (Id id){
+        return sendRequest("/ids", "POST", id.IdToString());
     }
 
     public static void main(String[] args) {
