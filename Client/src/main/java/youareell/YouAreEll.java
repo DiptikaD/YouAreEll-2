@@ -64,7 +64,7 @@ public class YouAreEll {
             Message postMessage = new Message(message, fromGithubId, toGithubId);
             return tt.postMessage(postMessage);
         }
-        return "message not posted";
+        return "message not posted, users not registered";
     }
 
 
